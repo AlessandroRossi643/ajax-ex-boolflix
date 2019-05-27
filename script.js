@@ -1,13 +1,20 @@
 $(document).ready(function(){
+  
   var template_source=$('#template-cards').html();
   var template_function=Handlebars.compile(template_source);
 
   var urlBase="https://api.themoviedb.org/3";
+
+
   $('#searchfilm').keydown(function(event){
     if (event.which==13) {
       var filmcercato=$('#searchfilm').val();
       cercaFilm(filmcercato,urlBase);
       $('#searchfilm').val('');
+
+      $('#searchfilm').keydown(function(){
+        $('.container_cards').children().remove();
+      });
     }
   });
 
@@ -41,8 +48,6 @@ $(document).ready(function(){
 
           $('.container_cards').append(template_function(placeholder));
         }
-
-
       },
 
       error: function(){
