@@ -1,0 +1,33 @@
+body{
+  font-family: 'Noto Sans', sans-serif;
+  background-color: grey;
+}
+.container_page{
+  width: 100%;
+  height: 100%;
+}
+.navbar{
+  height: 100px;
+  background-color: black;
+}
+.navbar-left{
+  color: red;
+}
+
+.container_cards{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+
+}
+.card{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 250px;
+  height: 400px;
+  margin: 10px 0;
+}
