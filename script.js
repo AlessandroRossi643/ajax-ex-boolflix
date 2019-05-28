@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  
+
   var template_source=$('#template-cards').html();
   var template_function=Handlebars.compile(template_source);
 
@@ -39,10 +39,12 @@ $(document).ready(function(){
           var votoFilm= filmtrovati[i].vote_average;
           console.log(titoloFilm, titoloOriginale, linguaOriginale, votoFilm);
 
+          var bandieraLingua=generaBandiera(linguaOriginale);
+
           var placeholder = {
             'titolo': titoloFilm,
             'titoloOrig': titoloOriginale,
-            'lingua': linguaOriginale,
+            'lingua': bandieraLingua,
             'voto': votoFilm
           }
 
@@ -54,5 +56,34 @@ $(document).ready(function(){
         alert("Ops, qualcosa è andato storto");
       }
     });
+  }
+
+  function generaBandiera(lingua){
+    var bandiera="";
+    switch (lingua) {
+      case "en":
+        bandiera="gb.png";
+        break;
+      case "de":
+        bandiera="de.png";
+        break;
+      case "es":
+        bandiera="es.png";
+        break;
+      case "it":
+        bandiera="it.png";
+        break;
+      case "us":
+        bandiera="us.png";
+        break;
+      case "fr":
+        bandiera="fr.png";
+        break;
+      default:
+        bandiera="";
+        break;
+    }
+
+    return bandiera;
   }
 });
