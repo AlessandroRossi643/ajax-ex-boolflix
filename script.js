@@ -5,11 +5,11 @@ $(document).ready(function(){
 
   var urlBase="https://api.themoviedb.org/3";
 
-
   $('#searchfilm').keydown(function(event){
     if (event.which==13) {
-      var filmcercato=$('#searchfilm').val();
-      cercaFilm(filmcercato,urlBase);
+      var filmSerieTVcercato=$('#searchfilm').val();
+      cercaFilm(filmSerieTVcercato,urlBase);
+
       $('#searchfilm').val('');
 
       $('#searchfilm').keydown(function(){
@@ -18,50 +18,47 @@ $(document).ready(function(){
     }
   });
 
-
-  function cercaFilm(filmUtente,url){
+  function cercaFilm(ricercaUtente,url){
     $.ajax({
       url:urlBase+"/search/movie",
       method:"GET",
       data: {
         'api_key':"a9cdf17c8817e1396596ef700c4b1a43",
-        'query': filmUtente,
+        'query': ricercaUtente,
         'language': "it"
       },
       success:function(data){
         var filmtrovati=data.results;
         console.log(filmtrovati);
-
-        for (var i = 0; i < filmtrovati.length; i++) {
-          var titoloFilm= filmtrovati[i].title;
-          var titoloOriginale= filmtrovati[i].original_title;
-          var linguaOriginale= filmtrovati[i].original_language;
-          var votoFilm= filmtrovati[i].vote_average;
-          console.log(titoloFilm, titoloOriginale, linguaOriginale, votoFilm);
-
-          var bandieraLingua=generaBandiera(linguaOriginale);
-          var stelle=generaVoto(votoFilm);
-          $('#star i').addClass("fas fa-star");
-
-          console.log(stelle);
-
-          var placeholder = {
-            'titolo': titoloFilm,
-            'titoloOrig': titoloOriginale,
-            'lingua': bandieraLingua,
-            'voto': stelle
-          }
-
-          $('.container_cards').append(template_function(placeholder));
-
-
-        }
+        stampaFilm(filmtrovati);
       },
-
       error: function(){
         alert("Ops, qualcosa è andato storto");
       }
     });
+  }
+  
+  function stampaFilm(elencofilm){
+    for (var i = 0; i < elencofilm.length; i++) {
+      var titoloFilm= elencofilm[i].title;
+      var titoloOriginale= elencofilm[i].original_title;
+      var linguaOriginale= elencofilm[i].original_language;
+      var votoFilm= elencofilm[i].vote_average;
+      console.log(titoloFilm, titoloOriginale, linguaOriginale, votoFilm);
+
+      var bandieraLingua=generaBandiera(linguaOriginale);
+      var stelle=generaVoto(votoFilm);
+
+      var placeholder = {
+        'titolo': titoloFilm,
+        'titoloOrig': titoloOriginale,
+        'lingua': bandieraLingua,
+        'voto': stelle
+        }
+
+      $('.container_cards').append(template_function(placeholder));
+
+    }
   }
 
   function generaBandiera(lingua){
@@ -86,12 +83,12 @@ $(document).ready(function(){
         bandiera="fr.png";
         break;
       default:
-        bandiera="nond.png";
+        bandiera="ndisp";
         break;
     }
-
     return bandiera;
   }
+
 
   function generaVoto(voto){
     votoAvg = Math.round(voto/2);
@@ -103,19 +100,19 @@ $(document).ready(function(){
         numeroStelle= "-";
         break;
       case 1:
-        numeroStelle="<i></i>";
+        numeroStelle="<i class=\"fas fa-star\"></i>";
         break;
       case 2:
-        numeroStelle="<i></i><i></i>";
+        numeroStelle="<i class=\"fas fa-star\"></i><i class=\"fas fa-star\"></i>";
         break;
       case 3:
-        numeroStelle="<i></i><i></i><i></i>";
+        numeroStelle="<i class=\"fas fa-star\"></i><i class=\"fas fa-star\"></i><i class=\"fas fa-star\"></i>";
         break;
       case 4:
-        numeroStelle="<i></i><i></i><i></i><i></i>";
+        numeroStelle="<i class=\"fas fa-star\"></i><i class=\"fas fa-star\"></i><i class=\"fas fa-star\"></i><i class=\"fas fa-star\"></i>";
         break;
       case 5:
-        numeroStelle="<i></i><i></i><i></i><i></i><i></i>";
+        numeroStelle="<i class=\"fas fa-star\"></i><i class=\"fas fa-star\"></i><i class=\"fas fa-star\"></i><i class=\"fas fa-star\"></i><i class=\"fas fa-star\"></i>";
         break;
     }
     return numeroStelle;
