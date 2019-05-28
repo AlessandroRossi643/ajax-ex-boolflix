@@ -40,15 +40,21 @@ $(document).ready(function(){
           console.log(titoloFilm, titoloOriginale, linguaOriginale, votoFilm);
 
           var bandieraLingua=generaBandiera(linguaOriginale);
+          var stelle=generaVoto(votoFilm);
+          $('#star i').addClass("fas fa-star");
+
+          console.log(stelle);
 
           var placeholder = {
             'titolo': titoloFilm,
             'titoloOrig': titoloOriginale,
             'lingua': bandieraLingua,
-            'voto': votoFilm
+            'voto': stelle
           }
 
           $('.container_cards').append(template_function(placeholder));
+
+
         }
       },
 
@@ -80,10 +86,38 @@ $(document).ready(function(){
         bandiera="fr.png";
         break;
       default:
-        bandiera="";
+        bandiera="nond.png";
         break;
     }
 
     return bandiera;
+  }
+
+  function generaVoto(voto){
+    votoAvg = Math.round(voto/2);
+    var numeroStelle="";
+    console.log(votoAvg);
+
+    switch (votoAvg) {
+      case 0:
+        numeroStelle= "-";
+        break;
+      case 1:
+        numeroStelle="<i></i>";
+        break;
+      case 2:
+        numeroStelle="<i></i><i></i>";
+        break;
+      case 3:
+        numeroStelle="<i></i><i></i><i></i>";
+        break;
+      case 4:
+        numeroStelle="<i></i><i></i><i></i><i></i>";
+        break;
+      case 5:
+        numeroStelle="<i></i><i></i><i></i><i></i><i></i>";
+        break;
+    }
+    return numeroStelle;
   }
 });
