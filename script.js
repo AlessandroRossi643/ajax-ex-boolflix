@@ -4,11 +4,11 @@ $(document).ready(function(){
   var template_function=Handlebars.compile(template_source);
 
   var urlBase="https://api.themoviedb.org/3";
-  // var urlBaseImg=
+  var urlBaseImg="https://image.tmdb.org/t/p/";
 
   var bandiereDisponibili=["en","it","es","de","us","fr"];
-  var tipo=""
-  tipo?"film":"serietv";
+  var controllotipo;
+  var tipo= controllotipo==true ? "film": "serie";
 
   $('#searchfilm').keydown(function(event){
     if (event.which==13) {
@@ -72,7 +72,9 @@ $(document).ready(function(){
         'title': serietv[i].name,
         'original_title': serietv[i].original_name,
         'original_language': serietv[i].original_language,
-        'vote_average':serietv[i].vote_average
+        'vote_average':serietv[i].vote_average,
+        'poster_path': serietv[i].poster_path,
+        'overview': serietv[i].overview
       }
       serieconvertite.push(nuovaSerie);
     }
@@ -88,13 +90,16 @@ $(document).ready(function(){
       var titoloOriginale= elencofilm[i].original_title;
       var linguaOriginale= elencofilm[i].original_language;
       var votoFilm= elencofilm[i].vote_average;
-      console.log(titoloFilm, titoloOriginale, linguaOriginale, votoFilm);
+      var urlFinaleImg= elencofilm[i].poster_path;
+      var introduzione=elencofilm[i].overview;
 
       var bandieraLingua=generaBandiera(linguaOriginale);
       var stelle=generaVoto(votoFilm);
       var html_stelle=creaStelleinHTML(stelle);
+      var copertina=generaImmagine(urlBaseImg,urlFinaleImg);
 
       var placeholder = {
+        'indirizzo': copertina,
         'titolo': titoloFilm,
         'titoloOrig': titoloOriginale,
         'lingua': bandieraLingua,
@@ -131,6 +136,18 @@ $(document).ready(function(){
       }
     }
     return icone_stelle;
+  }
+
+  function generaImmagine(urlB,urlF){
+    var larghezzaImg1="w154";
+    var indirizzoUrl="";
+    if (urlF==null) {
+      indirizzoUrl="img/ndisp.jpg";
+    }
+    else {
+      indirizzoUrl=urlB+larghezzaImg1+urlF;
+    }
+    return indirizzoUrl;
   }
 });
 
