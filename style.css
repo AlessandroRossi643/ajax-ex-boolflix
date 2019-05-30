@@ -1,16 +1,28 @@
 body{
   font-family: 'Noto Sans', sans-serif;
-  background-color: grey;
+  background-color: #333438;
 }
 .container_page{
   width: 100%;
   height: 100%;
 }
 
+
 .navbar{
   height: 100px;
   background-color: black;
   padding: 0 30px;
+}
+.navbar-left{
+  line-height: 100px;
+}
+.navbar-left #logo{
+  margin-right: 25px;
+  font-size: 25px;
+}
+.navbar-left .lista_NavbarLeft a{
+  margin-right: 20px;
+  color: white;
 }
 .navbar-left, .navbar-right{
   width: 50%;
@@ -22,16 +34,30 @@ body{
   font-size: 25px;
   float: left;
 }
+.lista_NavbarRight *{
+  display: inline-block;
+  margin-left: 20px;
+  color: white;
+  float: right;
+}
+.lista_NavbarRight i{
+  cursor: pointer;
+  font-size: 18px;
+}
 .navbar-right #searchfilm{
   width: 40%;
   float: right;
   padding: 5px;
   border-radius: 10px;
+  background-color: black;
+  color: white;
+}
+.displaynone{
+  display: none;
 }
 
-
 .container{
-  max-width: 1250px;
+  max-width: 1350px;
   padding: 20px 0;
 }
 .container_cards{
@@ -46,19 +72,23 @@ body{
   flex-direction: column;
   flex-wrap: wrap;
   width: 342px;
-  height: 600px;
-  padding: 8px;
+  height: 500px;
   margin: 10px 0;
   background-color: black;
   border: 1px solid white;
   color: white;
 }
 .card > img{
-  height: 300px;
+  width: 340px;
+  height: 500px;
 }
 .card > h4{
   font-weight: bold;
+  display:none;
 }
 .card > h4 > span{
   font-weight: normal;
+}
+.fas.fa-star{
+  color: yellow;
 }

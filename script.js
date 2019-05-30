@@ -7,8 +7,18 @@ $(document).ready(function(){
   var urlBaseImg="https://image.tmdb.org/t/p/";
 
   var bandiereDisponibili=["en","it","es","de","us","fr"];
-  var controllotipo;
-  var tipo= controllotipo==true ? "film": "serie";
+
+
+  // FUNCTIONS BARRA DI RICERCA
+  $('.ricerca').click(function(){
+    $('.lista_NavbarRight').toggleClass('displaynone');
+    $('#searchfilm').toggleClass('displaynone');
+  });
+
+  $('#searchfilm').blur(function(){
+    $('#searchfilm').toggleClass('displaynone');
+    $('.lista_NavbarRight').toggleClass('displaynone');
+  });
 
   $('#searchfilm').keydown(function(event){
     if (event.which==13) {
@@ -74,7 +84,7 @@ $(document).ready(function(){
         'original_language': serietv[i].original_language,
         'vote_average':serietv[i].vote_average,
         'poster_path': serietv[i].poster_path,
-        'overview': serietv[i].overview
+        'overview': serietv[i].overview,
       }
       serieconvertite.push(nuovaSerie);
     }
@@ -138,6 +148,7 @@ $(document).ready(function(){
     return icone_stelle;
   }
 
+  // FUNCTION GENERA IMMAGINE
   function generaImmagine(urlB,urlF){
     var larghezzaImg1="w154";
     var indirizzoUrl="";

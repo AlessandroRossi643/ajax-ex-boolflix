@@ -22,9 +22,22 @@
       <div class="navbar">
         <div class="navbar-left">
           <div id="logo">BOOLFLIX</div>
+          <div class="lista_NavbarLeft">
+            <a href="#">Home</a>
+            <a href="#">Serie TV</a>
+            <a href="#">Film</a>
+            <a href="#">Originali</a>
+            <a href="#">Aggiunti di recente</a>
+            <a href="#">La mia lista</a>
+          </div>
         </div>
         <div class="navbar-right">
-          <input type="search" id="searchfilm" placeholder="Cerca il film..">
+          <div class="lista_NavbarRight">
+            <i class="fas fa-bell"></i>
+            <div> ALESSANDRO </div>
+            <i class="fas fa-search ricerca"></i>
+          </div>
+          <input type="search" id="searchfilm" class="displaynone" placeholder="Cerca il film..">
         </div>
       </div>
 
@@ -41,6 +54,7 @@
         <img src="{{indirizzo}}" alt="Immagine non disponibile">
         <h4>Titolo: <span>{{titolo}}</span></h4>
         <h4>Titolo Originale: <span>{{titoloOrig}}</span></h4>
+        <h4>Tipo: {{type}}</h4>
         <h4>Lingua: {{{lingua}}}</h4>
         <h4>Voto:{{{voto}}}</h4>
       </div>
