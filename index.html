@@ -52,11 +52,13 @@
     <script id="template-cards" type="text/x-handlebars-template">
       <div class="card">
         <img src="{{indirizzo}}" alt="Immagine non disponibile">
-        <h4>Titolo: <span>{{titolo}}</span></h4>
-        <h4>Titolo Originale: <span>{{titoloOrig}}</span></h4>
-        <h4>Tipo: {{type}}</h4>
-        <h4>Lingua: {{{lingua}}}</h4>
-        <h4>Voto:{{{voto}}}</h4>
+        <div class="descrizioneScheda">
+          <h4>Titolo: <span>{{titolo}}</span></h4>
+          <h4>Titolo Originale: <span>{{titoloOrig}}</span></h4>
+          <h4>Lingua: {{{lingua}}}</h4>
+          <h4>Voto:{{{voto}}}</h4>
+          <h4>Presentazione: <span>{{overview}}</span></h4>
+        </div>
       </div>
     </script>
   </body>

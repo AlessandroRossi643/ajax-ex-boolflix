@@ -55,7 +55,9 @@ body{
 .displaynone{
   display: none;
 }
-
+.displayblock{
+  display: block;
+}
 .container{
   max-width: 1350px;
   padding: 20px 0;
@@ -77,17 +79,31 @@ body{
   background-color: black;
   border: 1px solid white;
   color: white;
+  position: relative;
+  overflow-y: scroll;
+}
+::-webkit-scrollbar {
+  width: 0px;
 }
 .card > img{
   width: 340px;
   height: 500px;
 }
-.card > h4{
-  font-weight: bold;
-  display:none;
+.descrizioneScheda{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 15px;
+  top: 0;
+  right: 0;
 }
-.card > h4 > span{
+.descrizioneScheda > h4{
+  font-weight: bold;
+  font-size: 20px;
+}
+.descrizioneScheda > h4 > span{
   font-weight: normal;
+  font-size: 18px;
 }
 .fas.fa-star{
   color: yellow;

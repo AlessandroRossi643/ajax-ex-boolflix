@@ -34,6 +34,17 @@ $(document).ready(function(){
   });
 
 
+  $(document).on('mouseenter','.card',function(){
+    $(this).children('img').fadeTo("fast",0.1);
+
+    $(this).mouseleave(function(){
+      $(this).children('img').fadeTo("fast",1);
+    });
+  });
+
+
+
+
   // FUNCTION CERCAFILM & SERIETV
   function cercaScheda(ricercaUtente,url){
     $.ajax({
@@ -102,6 +113,9 @@ $(document).ready(function(){
       var votoFilm= elencofilm[i].vote_average;
       var urlFinaleImg= elencofilm[i].poster_path;
       var introduzione=elencofilm[i].overview;
+      if(introduzione=" "){
+        introduzione="-"
+      }
 
       var bandieraLingua=generaBandiera(linguaOriginale);
       var stelle=generaVoto(votoFilm);
@@ -113,7 +127,8 @@ $(document).ready(function(){
         'titolo': titoloFilm,
         'titoloOrig': titoloOriginale,
         'lingua': bandieraLingua,
-        'voto': html_stelle
+        'voto': html_stelle,
+        'overview':introduzione
         }
 
       $('.container_cards').append(template_function(placeholder));
@@ -150,7 +165,7 @@ $(document).ready(function(){
 
   // FUNCTION GENERA IMMAGINE
   function generaImmagine(urlB,urlF){
-    var larghezzaImg1="w154";
+    var larghezzaImg1="w342";
     var indirizzoUrl="";
     if (urlF==null) {
       indirizzoUrl="img/ndisp.jpg";
@@ -160,6 +175,7 @@ $(document).ready(function(){
     }
     return indirizzoUrl;
   }
+
 });
 
 
