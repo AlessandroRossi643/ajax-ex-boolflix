@@ -11,13 +11,13 @@ $(document).ready(function(){
 
   // FUNCTIONS BARRA DI RICERCA
   $('.ricerca').click(function(){
-    $('.lista_NavbarRight').toggleClass('displaynone');
-    $('#searchfilm').toggleClass('displaynone');
+    $('.lista_NavbarRight').toggle();
+    $('#searchfilm').toggle();
   });
 
   $('#searchfilm').blur(function(){
-    $('#searchfilm').toggleClass('displaynone');
-    $('.lista_NavbarRight').toggleClass('displaynone');
+    $('#searchfilm').toggle();
+    $('.lista_NavbarRight').toggle();
   });
 
   $('#searchfilm').keydown(function(event){
@@ -33,17 +33,17 @@ $(document).ready(function(){
     }
   });
 
-
-  $(document).on('mouseenter','.card',function(){
-    $(this).children('img').fadeTo("fast",0.1);
-
-    $(this).mouseleave(function(){
+  // FUNCTIONS ON HOVER IN CARDS
+  $(document).on({
+    mouseenter:function(){
+      $(this).children('img').fadeTo("fast",0.1);
+      $(this).children('.descrizioneScheda').toggle()
+    },
+    mouseleave:function(){
       $(this).children('img').fadeTo("fast",1);
-    });
-  });
-
-
-
+      $(this).children('.descrizioneScheda').toggle()
+    }
+  },".card");
 
   // FUNCTION CERCAFILM & SERIETV
   function cercaScheda(ricercaUtente,url){
@@ -113,7 +113,7 @@ $(document).ready(function(){
       var votoFilm= elencofilm[i].vote_average;
       var urlFinaleImg= elencofilm[i].poster_path;
       var introduzione=elencofilm[i].overview;
-      if(introduzione=" "){
+      if(introduzione==""){
         introduzione="-"
       }
 

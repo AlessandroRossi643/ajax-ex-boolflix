@@ -58,6 +58,9 @@ body{
 .displayblock{
   display: block;
 }
+
+
+
 .container{
   max-width: 1350px;
   padding: 20px 0;
@@ -75,12 +78,15 @@ body{
   flex-wrap: wrap;
   width: 342px;
   height: 500px;
-  margin: 10px 0;
+  margin: 20px 0;
   background-color: black;
   border: 1px solid white;
   color: white;
   position: relative;
   overflow-y: scroll;
+}
+.card:hover{
+  transform: scale(1.1, 1.1)
 }
 ::-webkit-scrollbar {
   width: 0px;
@@ -93,9 +99,10 @@ body{
   position: absolute;
   height: 100%;
   width: 100%;
-  padding: 15px;
+  padding: 20px;
   top: 0;
   right: 0;
+  display: none;
 }
 .descrizioneScheda > h4{
   font-weight: bold;
